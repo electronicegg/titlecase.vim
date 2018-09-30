@@ -1,3 +1,7 @@
+
+# TODO - Consider cloning the python module and including it this directory
+#        Then import the module
+
 """
 Original Perl version by: John Gruber http://daringfireball.net/ 10 May 2008
 Python version by Stuart Colville http://muffinresearch.co.uk

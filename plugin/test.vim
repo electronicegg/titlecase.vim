@@ -1,8 +1,10 @@
 let s:plugin_root_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
-python3 << EOF
+pythonx << EOF
 
 import sys
+sys.dont_write_bytecode = True
+
 from os.path import normpath, join
 
 import vim
@@ -16,6 +18,10 @@ import titlecase
 
 def eval_titlecase():
     vim.current.line = titlecase.titlecase(vim.current.line)
+
+    # TODO - Consider using registers to process visually selected text
+    #        save the current register value to a python variable then restore
+    #        after executing the command
 
 EOF
 
