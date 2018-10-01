@@ -5,16 +5,41 @@
 This plugin uses the following Python module for the title case conversion:
 - https://github.com/ppannuto/python-titlecase
 
-## Work in Progress
 
-This plugin is only in it's initial state and has some limitations.
+## Installation
+
+### Using [vim-pathogen](https://github.com/tpope/vim-pathogen)
+
+```
+cd ~/.vim/bundle
+git clone https://github.com/mikko3024/titlecase.vim.git
+```
+
+### Using [vim-plug](https://github.com/junegunn/vim-plug)
+
+```
+Plug 'mikko3024/titlecase.vim'
+```
+
 
 ## Usage
 
-To convert text to title case, select the text in visual mode and call the
-command `:TitleCase`
+The `:TitleCase` command supports the following modes:
+  - Normal mode
+    > Converts the current line to title case
+
+  - Visual mode
+    > Converts all lines in the visual selection
+
+  - `:global/PATTERN/` or `:g/PATTERN/` command
+    > Converts all lines matching the `PATTERN`
+
+  - `:vglobal/PATTERN/` or `:v/PATTERN/`
+    > Converts all the lines that does not match the `PATTERN`
+
 
 ![Demo](demo.gif)
+
 
 ## Limitations
 
