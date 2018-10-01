@@ -38,8 +38,6 @@ The `:TitleCase` command supports the following modes:
     > Converts all the lines that does not match the `PATTERN`
 
 
-![Demo](demo.gif)
-
 
 ## Limitations
 
