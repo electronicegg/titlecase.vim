@@ -1,32 +1,33 @@
 let s:plugin_root_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
-pythonx << EOF
-
+python3 << EOF
 import sys
-sys.dont_write_bytecode = True
-
 from os.path import normpath, join
-
 import vim
 
+# Disable creation of pyc files
+sys.dont_write_bytecode = True
+
+# Add python-titlecase directory to python path
 plugin_root_dir = vim.eval('s:plugin_root_dir')
-python_root_dir = normpath(join(plugin_root_dir, '..', 'python'))
+python_root_dir = normpath(join(plugin_root_dir, '..', 'python/python-titlecase'))
 sys.path.insert(0, python_root_dir)
 
-# Import this plugin's python implementation
+# Import python-titlecase
 import titlecase
 
-def eval_titlecase():
-    vim.current.line = titlecase.titlecase(vim.current.line)
+def call_titlecase():
 
-    # TODO - Consider using registers to process visually selected text
-    #        save the current register value to a python variable then restore
-    #        after executing the command
+    start_row, start_col = vim.current.buffer.mark('<')
+    end_row,   end_col   = vim.current.buffer.mark('>')
+
+    for line_num in range(start_row, end_row+1):
+        vim.current.buffer[line_num-1] = titlecase.titlecase(vim.current.buffer[line_num-1])
 
 EOF
 
 function! TitleCase()
-    pythonx eval_titlecase()
+    pythonx call_titlecase()
 endfunction
 
-command! TitleCase call TitleCase()
+command! -range TitleCase <line1>,<line2>call TitleCase()
